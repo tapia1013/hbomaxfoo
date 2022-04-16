@@ -8,10 +8,21 @@ export function useStateContext() {
 
 
 export function HBOProvider({ children }) {
+  const [user, setUser] = useState('')
+  const defaultUserImg = 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/small-white-dog-breeds-maltese-1560293184.jpg?crop=1.00xw:0.663xh;0,0.337xh&resize=480:*'
+
+  const createUserAction = (e) => {
+    setUser(e.target.value)
+  }
+
+
+
   return (
     <StateContext.Provider
       value={{
-        test: 'test'
+        user,
+        createUserAction,
+        defaultUserImg
       }}
     >
       {children}

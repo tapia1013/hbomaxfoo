@@ -1,4 +1,5 @@
 @use 'reset';
+@use '../components//UI/Login/Login';
 @use 'login';
 @use 'create-user';
 @use '../components/UI/Header/header';
@@ -11,9 +12,11 @@
 @use '../components/UI/Account/Account';
 @use '../components/UI/SearchModal/SearchModal';
 
-h1{
+h1 {
   font-size: 3rem;
 }
-html, body{
+
+html,
+body {
   background: black;
 }
