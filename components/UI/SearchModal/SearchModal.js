@@ -15,6 +15,8 @@ const SearchModal = (props) => {
 
     return thumbnails;
   }
+
+
   return (
     <div
       className={`search-modal ${globalState.searchOpen ? 'search-modal--active' : ''}`}
