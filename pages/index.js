@@ -53,6 +53,11 @@ export default function Home() {
         endpoint=''
       />
       <MediaRow
+        title='Romance'
+        type='small-v'
+        endpoint=''
+      />
+      <MediaRow
         title='Scifi'
         type='small-h'
         endpoint=''
