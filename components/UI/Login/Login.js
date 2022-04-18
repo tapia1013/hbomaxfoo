@@ -23,12 +23,13 @@ const Login = () => {
     if (users < 1) {
       setLoadingUsers(false)
     }
-    console.log('load effect', users);
+    // console.log('load effect', users);
   }, [])
 
-  console.log('declared users', users);
+  // console.log('declared users', users);
 
   const selectUser = (id) => {
+    console.log(id);
     ls('activeUID', id)
     router.push('/')
   }
@@ -38,7 +39,7 @@ const Login = () => {
       return users.map((user) => {
         return (
           <div
-            onClick={selectUser}
+            onClick={() => selectUser(user.id)}
             key={user.id} className="login-user__user-box"
           >
             <img className="login-user__user-img" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/small-white-dog-breeds-maltese-1560293184.jpg?crop=1.00xw:0.663xh;0,0.337xh&resize=480:*" />

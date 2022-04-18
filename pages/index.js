@@ -1,8 +1,16 @@
 import Head from 'next/head'
 import { useEffect } from 'react';
 import { useStateContext } from '../components/HBOProvider'
+import MainLayout from '../components/Layouts/MainLayout';
+import FeaturedMedia from '../components/UI/FeaturedMedia/FeaturedMedia';
+import ForYouList from '../components/UI/ForYouList/ForYouList';
+import JustAdded from '../components/UI/JustAdded/JustAdded';
+import PosterView from '../components/UI/PosterView/PosterView';
 import Login from '../components/UI/Login/Login';
 import router, { useRouter } from 'next/router';
+import AuthCheck from '../components/AuthCheck';
+
+
 
 
 export default function Home() {
@@ -14,9 +22,12 @@ export default function Home() {
   }, [])
 
 
-  return (
-    <div>
-      Show Home Page
-    </div>
+  return AuthCheck(
+    <MainLayout>
+      <FeaturedMedia />
+      <ForYouList />
+      <JustAdded />
+      <PosterView />
+    </MainLayout>
   )
 }
