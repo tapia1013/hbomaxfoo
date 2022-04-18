@@ -27,7 +27,7 @@ export default function CreateUser() {
 
       users.push(user)
       ls('users', users)
-
+      router.push('/login')
     } else {
       users = ls('users')
       user = {
