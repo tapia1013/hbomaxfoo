@@ -6,7 +6,6 @@ import { useMounted } from './hooks/useMounted';
 
 
 const AuthCheck = (component) => {
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const router = useRouter();
   let { hasMounted } = useMounted();
   let activeUID = ls('activeUID');
