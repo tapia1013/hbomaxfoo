@@ -1,6 +1,8 @@
 import Account from "../Account/Account"
 import SearchModal from "../SearchModal/SearchModal"
 import { useStateContext } from '../../HBOProvider';
+import Link from 'next/link';
+
 
 
 
@@ -24,7 +26,13 @@ const Header = (props) => {
           <i className="fas fa-search" />
         </div>
       </div>
-      <div className="top-header__logo"></div>
+
+      <Link href='/'>
+        <a>
+          <div className="top-header__logo"></div>
+        </a>
+      </Link>
+
       <div
         onClick={() => globalState.setAccountModalOpenAction(!globalState.accountModalOpen)}
         className="top-header__account"

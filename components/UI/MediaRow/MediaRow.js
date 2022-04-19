@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { shuffuleArray } from '../../utilities';
-
+import Link from 'next/link'
 
 
 
@@ -103,12 +103,16 @@ const Thumbnail = (props) => {
 
 
   return (
-    <div className="media-row__thumbnail">
-      <img src={`https://image.tmdb.org/t/p/w${thumbsize(props.type)}/${props.movieData.poster_path}`} />
-      <div className="media-row__top-layer">
-        <i className="fas fa-play" />
-      </div>
-    </div>
+    <Link href={`/movie/${props.movieData.id}`}>
+      <a>
+        <div className="media-row__thumbnail">
+          <img src={`https://image.tmdb.org/t/p/w${thumbsize(props.type)}/${props.movieData.poster_path}`} />
+          <div className="media-row__top-layer">
+            <i className="fas fa-play" />
+          </div>
+        </div>
+      </a>
+    </Link>
   )
 }
 

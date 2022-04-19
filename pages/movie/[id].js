@@ -37,7 +37,13 @@ export default function SingleMediaPage(props) {
 
   return AuthCheck(
     <MainLayout>
-      <FeaturedMedia title={mediaData.title} />
+      <FeaturedMedia
+        title={mediaData.title}
+        type='single'
+        location='In theaters and on HBO MAX. Streaming throughout May 23.'
+        linkUrl='/movies/id'
+        mediaUrl={`https://image.tmdb.org/t/p/w1280${mediaData.backdrop_path}`}
+      />
       {/* <MediaRow title='More Like This' type='small-v' /> */}
       <CastInfo />
     </MainLayout>
