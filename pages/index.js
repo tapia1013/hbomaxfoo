@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import MediaRow from '../components/UI/MediaRow/MediaRow';
 import AuthCheck from '../components/AuthCheck';
 import LazyLoad from 'react-lazyload';
-
+import Placeholders from '../components/UI/Placeholders/Placeholders';
 
 
 
@@ -17,15 +17,19 @@ export default function Home() {
   const globalState = useStateContext();
   const router = useRouter()
 
-  useEffect(() => {
 
-  }, [])
+
 
 
   return AuthCheck(
     <MainLayout>
       <FeaturedMedia />
-      <LazyLoad height={680} offset={-400} placeholder={<h1>Loading</h1>}>
+      <LazyLoad
+        offset={-400}
+        placeholder={
+          <Placeholders title='Movies' type='large-v' />
+        }
+      >
         <MediaRow
           title='Movies'
           type='large-v'
@@ -33,7 +37,12 @@ export default function Home() {
         />
       </LazyLoad>
 
-      <LazyLoad height={333} offset={-400}>
+      <LazyLoad
+        offset={-400}
+        placeholder={
+          <Placeholders title='Series' type='small-h' />
+        }
+      >
         <MediaRow
           title='Series'
           type='small-h'
@@ -41,7 +50,12 @@ export default function Home() {
         />
       </LazyLoad>
 
-      <LazyLoad height={440} offset={-400}>
+      <LazyLoad
+        offset={-400}
+        placeholder={
+          <Placeholders title='Action' type='large-h' />
+        }
+      >
         <MediaRow
           title='Action'
           type='large-h'
@@ -49,7 +63,12 @@ export default function Home() {
         />
       </LazyLoad>
 
-      <LazyLoad height={200} offset={200}>
+      <LazyLoad
+        offset={-400}
+        placeholder={
+          <Placeholders title='Animation' type='small-v' />
+        }
+      >
         <MediaRow
           title='Animation'
           type='small-v'
@@ -57,7 +76,12 @@ export default function Home() {
         />
       </LazyLoad>
 
-      <LazyLoad height={200} offset={200}>
+      <LazyLoad
+        offset={-400}
+        placeholder={
+          <Placeholders title='Drama' type='small-h' />
+        }
+      >
         <MediaRow
           title='Drama'
           type='small-h'
@@ -65,7 +89,12 @@ export default function Home() {
         />
       </LazyLoad>
 
-      <LazyLoad height={200} offset={200}>
+      <LazyLoad
+        offset={-400}
+        placeholder={
+          <Placeholders title='Horror' type='large-v' />
+        }
+      >
         <MediaRow
           title='Horror'
           type='large-v'
@@ -73,7 +102,12 @@ export default function Home() {
         />
       </LazyLoad>
 
-      <LazyLoad height={200} offset={200}>
+      <LazyLoad
+        offset={-400}
+        placeholder={
+          <Placeholders title='Romance' type='small-v' />
+        }
+      >
         <MediaRow
           title='Romance'
           type='small-v'
@@ -81,7 +115,12 @@ export default function Home() {
         />
       </LazyLoad>
 
-      <LazyLoad height={200} offset={200}>
+      <LazyLoad
+        offset={-200}
+        placeholder={
+          <Placeholders title='Scifi' type='small-h' />
+        }
+      >
         <MediaRow
           title='Scifi'
           type='small-h'
