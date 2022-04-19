@@ -25,42 +25,42 @@ export default function Home() {
       <MediaRow
         title='Movies'
         type='large-v'
-        endpoint=''
+        endpoint='discover/movie?sort_by=popularity.desc&primary_release_year=2022'
       />
       <MediaRow
         title='Series'
         type='small-h'
-        endpoint=''
+        endpoint='discover/tv?primary_release_year=2022'
       />
       <MediaRow
         title='Action'
         type='large-h'
-        endpoint=''
+        endpoint='discover/movie?with_genres=28&primary_release_year=2022'
       />
       <MediaRow
-        title='Anime'
+        title='Animation'
         type='small-v'
-        endpoint=''
+        endpoint='discover/movie?with_genres=16&primary_release_year=2022'
       />
       <MediaRow
         title='Drama'
         type='small-h'
-        endpoint=''
+        endpoint='discover/movie?with_genres=18&primary_release_year=2022'
       />
       <MediaRow
         title='Horror'
         type='large-v'
-        endpoint=''
+        endpoint='discover/movie?with_genres=27&primary_release_year=2022'
       />
       <MediaRow
         title='Romance'
         type='small-v'
-        endpoint=''
+        endpoint='discover/movie?with_genres=10749&primary_release_year=2022'
       />
       <MediaRow
         title='Scifi'
         type='small-h'
-        endpoint=''
+        endpoint='discover/movie?with_genres=878&primary_release_year=2022'
       />
     </MainLayout>
   )

@@ -1,10 +1,40 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { shuffuleArray } from '../../utilities';
+
 
 
 
 
 const MediaRow = (props) => {
-  const [loadingData, setLoadingData] = useState(true)
+  const [loadingData, setLoadingData] = useState(true);
+  const [movies, setMoviesData] = useState([])
+
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const res = await axios.get(`https://api.themoviedb.org/3/${props.endpoint}&api_key=c1b0e735ad3ff470f44fa29c9a1e6189`)
+
+        setMoviesData(shuffuleArray(res.data.results))
+        console.log(movies);
+
+        setLoadingData(false)
+
+        console.log('Successful Reponse ', props.title)
+        console.log(res);
+
+
+
+      } catch (error) {
+        console.log('Error Respone', error);
+      }
+
+    }
+
+    fetchMovies()
+  }, [])
+
 
 
   const loopComp = (comp, digit) => {
@@ -16,11 +46,20 @@ const MediaRow = (props) => {
     return thumbnails;
   }
 
-  const showThumbnails = () => {
-    setTimeout(() => setLoadingData(false), 5000);
 
-    return loadingData ? loopComp((<Skeleton />), 10) : loopComp((<Thumbnail />), 10)
+
+  const showThumbnails = () => {
+    // setTimeout(() => setLoadingData(false), 5000);
+
+    return loadingData
+      ? loopComp((<Skeleton />), 10)
+      : movies.map((movie) => {
+        return <Thumbnail movieData={movie} />
+      })
   }
+
+
+
 
   return (
     <div className={`media-row ${props.type}`}>
@@ -42,10 +81,10 @@ const MediaRow = (props) => {
 
 
 
-const Thumbnail = () => {
+const Thumbnail = (props) => {
   return (
     <div className="media-row__thumbnail">
-      <img src="https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/1280x1280/products/88997/93196/Avengers-Endgame-Final-Style-Poster-buy-original-movie-posters-at-starstills__42370.1563973516.jpg?c=2?imbypass=on" />
+      <img src={`https://image.tmdb.org/t/p/original/${props.movieData.poster_path}`} />
       <div className="media-row__top-layer">
         <i className="fas fa-play" />
       </div>
