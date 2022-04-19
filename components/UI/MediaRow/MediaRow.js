@@ -17,12 +17,12 @@ const MediaRow = (props) => {
         const res = await axios.get(`https://api.themoviedb.org/3/${props.endpoint}&api_key=c1b0e735ad3ff470f44fa29c9a1e6189`)
 
         setMoviesData(shuffuleArray(res.data.results))
-        console.log(movies);
+        // console.log(movies);
 
         setLoadingData(false)
 
         console.log('Successful Reponse ', props.title)
-        console.log(res);
+        // console.log(res);
 
 
 
