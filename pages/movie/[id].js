@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import MainLayout from '../../components/Layouts/MainLayout';
 import CastInfo from '../../components/UI/CastInfo/CastInfo'
@@ -6,7 +7,11 @@ import FeaturedMedia from '../../components/UI/FeaturedMedia/FeaturedMedia'
 import MediaRow from '../../components/UI/MediaRow/MediaRow'
 import AuthCheck from '../../components/AuthCheck'
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import LazyLoad from 'react-lazyload';
+import Placeholders from '../../components/UI/Placeholders/Placeholders';
+
+
+
 
 
 export default function SingleMediaPage(props) {
@@ -30,7 +35,7 @@ export default function SingleMediaPage(props) {
     }
 
     fetchMovies()
-  }, [])
+  }, [mediaData])
 
 
 
@@ -44,8 +49,19 @@ export default function SingleMediaPage(props) {
         linkUrl='/movies/id'
         mediaUrl={`https://image.tmdb.org/t/p/w1280${mediaData.backdrop_path}`}
       />
-      {/* <MediaRow title='More Like This' type='small-v' /> */}
-      <CastInfo />
+      <LazyLoad
+        offset={-200}
+        placeholder={
+          <Placeholders title='Movies' type='large-v' />
+        }
+      >
+        <MediaRow
+          title='Similar To This'
+          type='large-v'
+          endpoint={`movie/${props.query.id}/similar?`}
+        />
+      </LazyLoad>
+      <CastInfo mediaId={props.query.id} />
     </MainLayout>
   )
 }
