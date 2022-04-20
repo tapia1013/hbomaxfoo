@@ -21,21 +21,21 @@ export default function SingleMediaPage(props) {
   console.log(props);
 
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const res = await axios.get(`https://api.themoviedb.org/3/movie/${props.query.id}?api_key=c1b0e735ad3ff470f44fa29c9a1e6189`)
-        setMediaData(res.data)
-        console.log(res);
+  // useEffect(() => {
+  //   const fetchMovies = async () => {
+  //     try {
+  //       const res = await axios.get(`https://api.themoviedb.org/3/movie/${props.query.id}?api_key=c1b0e735ad3ff470f44fa29c9a1e6189`)
+  //       setMediaData(res.data)
+  //       console.log(res);
 
-      } catch (error) {
-        console.log('Error Respone', error);
-      }
+  //     } catch (error) {
+  //       console.log('Error Respone', error);
+  //     }
 
-    }
+  //   }
 
-    fetchMovies()
-  }, [mediaData])
+  //   fetchMovies()
+  // }, [mediaData])
 
 
 
@@ -43,11 +43,11 @@ export default function SingleMediaPage(props) {
   return AuthCheck(
     <MainLayout>
       <FeaturedMedia
-        title={mediaData.title}
+        title={props.query.mediaType === 'movie' ? props.mediaData.title : props.mediaData.name}
         type='single'
         location='In theaters and on HBO MAX. Streaming throughout May 23.'
         linkUrl='/movies/id'
-        mediaUrl={`https://image.tmdb.org/t/p/w1280${mediaData.backdrop_path}`}
+        mediaUrl={`https://image.tmdb.org/t/p/w1280${props.mediaData.backdrop_path}`}
       />
       <LazyLoad
         offset={-200}
@@ -58,18 +58,28 @@ export default function SingleMediaPage(props) {
         <MediaRow
           title='Similar To This'
           type='large-v'
-          endpoint={`movie/${props.query.id}/similar?`}
+          mediaType={props.query.mediaType}
+          endpoint={`${props.query.mediaType === 'movie' ? 'movie' : 'tv'}/${props.query.id}/similar?`}
         />
       </LazyLoad>
-      <CastInfo mediaId={props.query.id} />
+      <CastInfo mediaType={props.mediaType} mediaId={props.query.id} />
     </MainLayout>
   )
 }
 
 
 export async function getServerSideProps(context) {
+  let mediaData;
+
+  try {
+    mediaData = await axios.get(`https://api.themoviedb.org/3/${context.query.mediaType}/${context.query.id}?api_key=c1b0e735ad3ff470f44fa29c9a1e6189`)
+  } catch (error) {
+    console.log(error);
+  }
+
   return {
     props: {
+      mediaData: mediaData.data,
       query: context.query
     }
   }

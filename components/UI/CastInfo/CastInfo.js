@@ -9,7 +9,7 @@ const CastInfo = (props) => {
 
 
   useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/movie/${props.mediaId}/credits?api_key=c1b0e735ad3ff470f44fa29c9a1e6189`)
+    axios.get(`https://api.themoviedb.org/3/${props.mediaType === 'movie' ? 'movie' : 'tv'}/${props.mediaId}/credits?api_key=c1b0e735ad3ff470f44fa29c9a1e6189`)
       .then(function (response) {
         setCredits(response.data)
         setLoadingData(false)
