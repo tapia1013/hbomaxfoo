@@ -26,13 +26,12 @@ export default function MediaTypePage(props) {
 
   return AuthCheck(
     <MainLayout>
-      {/* <FeaturedMedia
-        type='front'
-        location='In theaters and on HBO MAX. Streaming throughout May 23.'
-        linkUrl='/movie/460465'
-        title='Mortal Kombat'
-        mediaUrl='https://www.youtube.com/embed/NYH2sLid0Zc?autoplay=1&loop=1&start=16'
-      /> */}
+      <FeaturedMedia
+        type='single'
+        linkUrl={`/${props.query.mediaType}/${props.featuredData.id}`}
+        title={props.query.mediaType === 'movie' ? props.featuredData.title : props.featuredData.name}
+        mediaUrl={`https://image.tmdb.org/t/p/w1280${props.featuredData.backdrop_path}`}
+      />
       <GenreNav
         mediaType={props.query.MediaType}
         genresData={props.genresData}

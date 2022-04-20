@@ -6,6 +6,11 @@
   position: relative;
   overflow: hidden;
 
+  &--single {
+    min-height: 500px;
+    height: 60vh;
+  }
+
   &__video {
     position: absolute;
     z-index: 1;
