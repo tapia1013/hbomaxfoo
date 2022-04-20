@@ -17,7 +17,7 @@ const CastInfo = (props) => {
       .catch(function (error) {
         console.log('Error ', error);
       })
-  }, [credits])
+  }, [])
 
 
 

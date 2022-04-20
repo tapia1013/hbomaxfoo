@@ -19,7 +19,7 @@ const FeaturedMedia = (props) => {
           height="100%"
           src={props.mediaUrl}
           allow="accelerometer; autoplay; clipboard-write;encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen />
+          allowFullScreen />
       )
     } else {
       return (

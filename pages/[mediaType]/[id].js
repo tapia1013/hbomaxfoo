@@ -62,7 +62,7 @@ export default function SingleMediaPage(props) {
           endpoint={`${props.query.mediaType === 'movie' ? 'movie' : 'tv'}/${props.query.id}/similar?`}
         />
       </LazyLoad>
-      <CastInfo mediaType={props.mediaType} mediaId={props.query.id} />
+      <CastInfo mediaType={props.query.mediaType} mediaId={props.query.id} />
     </MainLayout>
   )
 }

@@ -14,6 +14,8 @@ export function HBOProvider({ children }) {
   const [searchOpen, setSearchOpenAction] = useState(false);
 
 
+  const thumbTypes = ['large-v', 'small-v', 'large-h', 'small-h']
+
 
   const defaultUserImg = 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/small-white-dog-breeds-maltese-1560293184.jpg?crop=1.00xw:0.663xh;0,0.337xh&resize=480:*';
 
@@ -35,7 +37,8 @@ export function HBOProvider({ children }) {
         accountModalOpen,
         setAccountModalOpenAction,
         searchOpen,
-        setSearchOpenAction
+        setSearchOpenAction,
+        thumbTypes
       }}
     >
       {children}
