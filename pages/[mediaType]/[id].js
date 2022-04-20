@@ -56,13 +56,18 @@ export default function SingleMediaPage(props) {
         }
       >
         <MediaRow
+          updateData={props.query.id}
           title='Similar To This'
           type='large-v'
           mediaType={props.query.mediaType}
           endpoint={`${props.query.mediaType === 'movie' ? 'movie' : 'tv'}/${props.query.id}/similar?`}
         />
       </LazyLoad>
-      <CastInfo mediaType={props.query.mediaType} mediaId={props.query.id} />
+      <CastInfo
+        mediaType={props.query.mediaType}
+        mediaId={props.query.id}
+        updateData={props.query.id}
+      />
     </MainLayout>
   )
 }

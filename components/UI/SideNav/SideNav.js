@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useStateContext } from '../../HBOProvider';
 import Link from 'next/link';
 
@@ -7,6 +7,14 @@ import Link from 'next/link';
 const SideNav = (props) => {
 	const globalState = useStateContext();
 
+
+	useEffect(() => {
+		if (globalState.sideNavOpen || globalState.accountModalOpen || globalState.searchOpen) {
+			document.body.style.overflowY = 'hidden'
+		} else {
+			document.body.style.overflowY = 'auto'
+		}
+	}, [globalState.sideNavOpen, globalState.accountModalOpen, globalState.searchOpen])
 
 
 	return (

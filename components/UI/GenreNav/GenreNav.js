@@ -27,9 +27,11 @@ const GenreNav = (props) => {
 const GenreList = (props) => {
 	return props.genresData.map((item) => (
 		<li key={item.id}>
-			<a href={`/${props.mediaType}/genre/${item.id}`}>
-				{item.name}
-			</a>
+			<Link href={`/${props.mediaType}/genre/${item.id}`}>
+				<a>
+					{item.name}
+				</a>
+			</Link>
 		</li>
 	))
 }

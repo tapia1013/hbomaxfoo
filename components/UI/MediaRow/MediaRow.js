@@ -33,7 +33,7 @@ const MediaRow = (props) => {
     }
 
     fetchMovies()
-  }, [])
+  }, [props.updateData])
 
 
 
