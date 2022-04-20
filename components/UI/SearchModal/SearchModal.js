@@ -22,7 +22,7 @@ const SearchModal = (props) => {
       className={`search-modal ${globalState.searchOpen ? 'search-modal--active' : ''}`}
     >
       <div className="search-modal__input-group ">
-        <input className="search-modal__input" type="text" placeholder="search for a title" value="" />
+        <input className="search-modal__input" type="text" placeholder="search for a title" />
         <div
           onClick={() => globalState.setSearchOpenAction(!globalState.searchOpen)}
           className="search-modal__close-btn"
@@ -37,15 +37,12 @@ const SearchModal = (props) => {
 
       <div className="search-modal__thumbnails">
 
-        {loopComp(
-          (<div className="search-modal__thumbnail">
-            <img src="https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/1280x1280/products/88997/93196/Avengers-Endgame-Final-Style-Poster-buy-original-movie-posters-at-starstills__42370.1563973516.jpg?c=2?imbypass=on" />
-            <div className="search-modal__top-layer">
-              <i className="fas fa-play" />
-            </div>
-          </div>), 10
-
-        )}
+        <div className="search-modal__thumbnail">
+          <img src="https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/1280x1280/products/88997/93196/Avengers-Endgame-Final-Style-Poster-buy-original-movie-posters-at-starstills__42370.1563973516.jpg?c=2?imbypass=on" />
+          <div className="search-modal__top-layer">
+            <i className="fas fa-play" />
+          </div>
+        </div>
       </div>
     </div>
   )

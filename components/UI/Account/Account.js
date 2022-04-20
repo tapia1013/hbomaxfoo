@@ -7,20 +7,21 @@ import { useStateContext } from "../../HBOProvider";
 const Account = (props) => {
   const globalState = useStateContext();
 
-  const loopComp = (comp, digit) => {
-    let thumbnails = [];
-    for (let index = 1; index <= digit; index++) {
-      thumbnails.push(comp)
-    }
+  // const loopComp = (comp, digit) => {
+  //   let thumbnails = [];
+  //   for (let index = 1; index <= digit; index++) {
+  //     thumbnails.push(comp)
+  //   }
 
-    return thumbnails;
-  }
+  //   return thumbnails;
+  // }
+
   return (
     <div className={`account ${globalState.accountModalOpen ? 'account--active' : ''}`}>
       <div className="account__details">
         <div className="account__title">My List</div>
         <div className="account__watch-list">
-          {loopComp((<div className="account__watch-video">
+          <div className="account__watch-video">
             <img src="https://www.dogbreedslist.info/uploads/dog-pictures/maltese-1.jpg" />
             <div className="account__watch-overlay">
               <div className="account__watch-buttons">
@@ -32,8 +33,7 @@ const Account = (props) => {
                 </div>
               </div>
             </div>
-          </div>), 6)}
-
+          </div>
         </div>
       </div>
       <div className="account__menu">
