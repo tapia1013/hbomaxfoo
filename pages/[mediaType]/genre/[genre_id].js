@@ -1,16 +1,16 @@
 import Head from 'next/head'
 import { useEffect } from 'react';
-import { useStateContext } from '../../components/HBOProvider'
-import MainLayout from '../../components/Layouts/MainLayout';
-import FeaturedMedia from '../../components/UI/FeaturedMedia/FeaturedMedia';
+import { useStateContext } from '../../../components/HBOProvider'
+import MainLayout from '../../../components/Layouts/MainLayout';
+import FeaturedMedia from '../../../components/UI/FeaturedMedia/FeaturedMedia';
 import { useRouter } from 'next/router';
-import MediaRow from '../../components/UI/MediaRow/MediaRow';
-import AuthCheck from '../../components/AuthCheck';
+import MediaRow from '../../../components/UI/MediaRow/MediaRow';
+import AuthCheck from '../../../components/AuthCheck';
 import LazyLoad from 'react-lazyload';
-import Placeholders from '../../components/UI/Placeholders/Placeholders';
-import GenreNav from '../../components/UI/GenreNav/GenreNav';
+import Placeholders from '../../../components/UI/Placeholders/Placeholders';
+import GenreNav from '../../../components/UI/GenreNav/GenreNav';
 import axios from 'axios';
-import { shuffuleArray } from '../../components/utilities';
+import { shuffuleArray } from '../../../components/utilities';
 
 
 
@@ -26,7 +26,7 @@ export default function MediaTypePage(props) {
   const showRandomMedia = () => {
     let thumbType;
 
-    return props.genresData.map((item) => {
+    return props.genresData.map((item, index) => {
       thumbType = shuffuleArray(globalState.thumbTypes)[0]
 
       return (
@@ -40,7 +40,7 @@ export default function MediaTypePage(props) {
             <MediaRow
               title={item.name}
               type={thumbType}
-              endpoint={`discover/${props.query.mediaType}?with_genres=${item.id}&sort_by=popularity.desc&primary_release_year=2022`}
+              endpoint={`discover/${props.query.mediaType}?with_genres=${props.query.genre_id}&sort_by=popularity.desc&primary_release_year=2022&page=${index + 1}`}
             />
           </LazyLoad>
         </div>
@@ -75,13 +75,14 @@ export async function getServerSideProps(context) {
   try {
     genresData = await axios.get(`https://api.themoviedb.org/3/genre/${context.query.mediaType}/list?api_key=c1b0e735ad3ff470f44fa29c9a1e6189`);
 
-    featuredData = await axios.get(`https://api.themoviedb.org/3/discover/${context.query.mediaType}?primary_release_year=2022&api_key=c1b0e735ad3ff470f44fa29c9a1e6189`);
+    featuredData = await axios.get(`https://api.themoviedb.org/3/discover/${context.query.mediaType}?primary_release_year=2022&with_genres=${context.query.genre_id}&api_key=c1b0e735ad3ff470f44fa29c9a1e6189`);
 
     console.log("genreData");
     console.log(genresData.data);
   } catch (error) {
     console.log("Error: ", error);
   }
+
 
 
 
