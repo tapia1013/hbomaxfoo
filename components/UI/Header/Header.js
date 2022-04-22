@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const Header = (props) => {
   const globalState = useStateContext();
-  console.log(globalState);
+  // console.log(globalState);
 
   return (
     <header className={`top-header ${globalState.accountModalOpen || globalState.sideNavOpen ? 'top-header--menu-open' : ''}`}>

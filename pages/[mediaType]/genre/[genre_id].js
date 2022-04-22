@@ -57,6 +57,8 @@ export default function MediaTypePage(props) {
         linkUrl={`/${props.query.mediaType}/${props.featuredData.id}`}
         title={props.query.mediaType === 'movie' ? props.featuredData.title : props.featuredData.name}
         mediaUrl={`https://image.tmdb.org/t/p/w1280${props.featuredData.backdrop_path}`}
+        mediaType={props.query.mediaType}
+        mediaId={props.featuredData.id}
       />
       <GenreNav
         mediaType={props.query.mediaType}
@@ -78,8 +80,8 @@ export async function getServerSideProps(context) {
 
     featuredData = await axios.get(`https://api.themoviedb.org/3/discover/${context.query.mediaType}?primary_release_year=2022&with_genres=${context.query.genre_id}&api_key=c1b0e735ad3ff470f44fa29c9a1e6189`);
 
-    console.log("genreData");
-    console.log(genresData.data);
+    // console.log("genreData");
+    // console.log(genresData.data);
   } catch (error) {
     console.log("Error: ", error);
   }

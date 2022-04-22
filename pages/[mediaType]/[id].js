@@ -18,24 +18,7 @@ export default function SingleMediaPage(props) {
   const [mediaData, setMediaData] = useState(false)
 
   const router = useRouter();
-  console.log(props);
-
-
-  // useEffect(() => {
-  //   const fetchMovies = async () => {
-  //     try {
-  //       const res = await axios.get(`https://api.themoviedb.org/3/movie/${props.query.id}?api_key=c1b0e735ad3ff470f44fa29c9a1e6189`)
-  //       setMediaData(res.data)
-  //       console.log(res);
-
-  //     } catch (error) {
-  //       console.log('Error Respone', error);
-  //     }
-
-  //   }
-
-  //   fetchMovies()
-  // }, [mediaData])
+  // console.log(props);
 
 
 
@@ -48,7 +31,10 @@ export default function SingleMediaPage(props) {
         location='In theaters and on HBO MAX. Streaming throughout May 23.'
         linkUrl='/movies/id'
         mediaUrl={`https://image.tmdb.org/t/p/w1280${props.mediaData.backdrop_path}`}
+        mediaType={props.query.mediaType}
+        mediaId={props.query.id}
       />
+
       <LazyLoad
         offset={-200}
         placeholder={

@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { useEffect } from 'react';
 import { useStateContext } from '../components/HBOProvider'
 import MainLayout from '../components/Layouts/MainLayout';
 import FeaturedMedia from '../components/UI/FeaturedMedia/FeaturedMedia';
@@ -29,6 +28,8 @@ export default function Home() {
         linkUrl='/movie/460465'
         title='Mortal Kombat'
         mediaUrl='https://www.youtube.com/embed/NYH2sLid0Zc?autoplay=1&loop=1&start=16'
+        mediaType={'movie'}
+        mediaId={460465}
       />
       <LazyLoad
         offset={-400}

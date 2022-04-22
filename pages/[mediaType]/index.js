@@ -34,7 +34,10 @@ export default function MediaTypePage(props) {
           <LazyLoad
             offset={-200}
             placeholder={
-              <Placeholders title={item.name} type={thumbType} />
+              <Placeholders
+                title={item.name}
+                type={thumbType}
+              />
             }
           >
             <MediaRow
@@ -56,6 +59,8 @@ export default function MediaTypePage(props) {
         linkUrl={`/${props.query.mediaType}/${props.featuredData.id}`}
         title={props.query.mediaType === 'movie' ? props.featuredData.title : props.featuredData.name}
         mediaUrl={`https://image.tmdb.org/t/p/w1280${props.featuredData.backdrop_path}`}
+        mediaType={props.query.mediaType}
+        mediaId={props.featuredData.id}
       />
       <GenreNav
         mediaType={props.query.mediaType}
@@ -65,8 +70,6 @@ export default function MediaTypePage(props) {
     </MainLayout>
   )
 }
-
-
 
 export async function getServerSideProps(context) {
   let genresData;

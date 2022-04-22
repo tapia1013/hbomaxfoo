@@ -1,39 +1,69 @@
+import { useRouter } from "next/router";
 import { useStateContext } from "../../HBOProvider";
-
+import ls from 'local-storage'
 
 
 
 
 const Account = (props) => {
   const globalState = useStateContext();
+  const router = useRouter();
 
-  // const loopComp = (comp, digit) => {
-  //   let thumbnails = [];
-  //   for (let index = 1; index <= digit; index++) {
-  //     thumbnails.push(comp)
-  //   }
+  // console.log(globalState.watchList)
 
-  //   return thumbnails;
-  // }
+
+  // Send to correct movie page if play is clicked
+  const watchMedia = (url) => {
+    router.push(url)
+    globalState.setAccountModalOpenAction(!globalState.accountModalOpen)
+  }
+
+
+
+  // Func to make sure we're showing the whole list
+  const showWatchList = () => {
+    return globalState.watchList.map((item, index) => (
+      <div className="account__watch-video" key={index}>
+        <img src={item.mediaUrl} />
+        <div className="account__watch-overlay">
+          <div className="account__watch-buttons">
+            <div
+              className="account__watch-circle"
+              onClick={() => watchMedia(`/${item.mediaType}/${item.mediaId}`)}
+            >
+              <i className="fas fa-play" />
+            </div>
+            <div
+              className="account__watch-circle"
+              onClick={() => globalState.removeFromList(item.mediaId)}
+            >
+              <i className="fas fa-times" />
+            </div>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+
+
+
+  const singOut = () => {
+    ls.remove('users')
+    router.push('/create')
+  }
+
+
 
   return (
     <div className={`account ${globalState.accountModalOpen ? 'account--active' : ''}`}>
       <div className="account__details">
         <div className="account__title">My List</div>
         <div className="account__watch-list">
-          <div className="account__watch-video">
-            <img src="https://www.dogbreedslist.info/uploads/dog-pictures/maltese-1.jpg" />
-            <div className="account__watch-overlay">
-              <div className="account__watch-buttons">
-                <div className="account__watch-circle">
-                  <i className="fas fa-play" />
-                </div>
-                <div className="account__watch-circle">
-                  <i className="fas fa-times" />
-                </div>
-              </div>
-            </div>
-          </div>
+          {
+            globalState.watchList !== null
+              ? showWatchList()
+              : 'Sorry No Movies Added'
+          }
         </div>
       </div>
       <div className="account__menu">
@@ -44,11 +74,11 @@ const Account = (props) => {
         </ul>
         <div className="side-nav__divider" />
         <ul className="account__main">
-          <li>
-            <a href="/">Account</a>
+          <li style={{ cursor: 'pointer' }} onClick={singOut}>
+            <a>Account</a>
           </li>
-          <li>
-            <a href="/">Sign Out</a>
+          <li style={{ cursor: 'pointer' }} onClick={singOut}>
+            <a>Sign Out</a>
           </li>
         </ul>
       </div>
